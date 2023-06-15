@@ -1,21 +1,27 @@
 <template>
   <div id="app">
       <div>{{ coordinates }}</div>
-      <div>{{ destination.latitude }},{{ destination.longitude }}</div>
-      <div class="arrow" ref="arrow">⬆️</div>
-      <div>{{ orientation }}</div>
+      <input type="text" v-model="destination.latitude">
+      <input type="text" v-model="destination.longitude">
+      <div class="arrow" ref="arrow" style="margin: 20px 0;">⬆️</div>
+      <div v-if="error" class="error">
+        <hr>
+        {{ error }}
+      </div>
+      <hr>
+      <div v-if="log" class="log">
+        <ul v-for="(item, index) in log" :key="index">
+          <li >{{ item }}</li>
+        </ul>
+      </div>
   </div>
 </template>
 
 <script>
-// import { useGeolocation } from '@vueuse/core'
-// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    // HelloWorld
-  },
+  components: {},
   data() {
     return {
       coordinates: {
@@ -27,32 +33,42 @@ export default {
         longitude: 18.034346,
       },
       bearing: 0,
-      orientation: null
+      error: '',
+      dest_lat: 59.264805,
+      dest_lng: 18.034346,
+      log: []
     }
   },
   created() {
-    navigator.geolocation.watchPosition(position => {
-      console.log(position);
-      const { latitude, longitude } = position.coords;
-      this.coordinates.latitude = latitude;
-      this.coordinates.longitude = longitude;
+    if ("geolocation" in navigator) {
+      navigator.geolocation.watchPosition(
+        position => {
+          console.log(position.coords.heading);
+          this.log.push({
+            heading: position.coords.heading,
+            latitude: position.coords.latitude, 
+            longitude: position.coords.longitude,
+          });
+          const { latitude, longitude } = position.coords;
+          this.coordinates.latitude = latitude;
+          this.coordinates.longitude = longitude;
 
-      const bearing = this.calculateBearing(latitude, longitude, this.destination.latitude, this.destination.longitude);
-      this.bearing = bearing;
+          const bearing = this.calculateBearing(latitude, longitude, this.destination.latitude, this.destination.longitude);
+          this.bearing = bearing;
 
-      const compassIndicator = this.$refs.arrow;
-      compassIndicator.style.transform = `rotate(${bearing}deg)`;
-    });
-
-    window.addEventListener('deviceorientation', (event) => { 
-      this.orientation = event;
-      console.log(event);
-    });
+          const compassIndicator = this.$refs.arrow;
+          compassIndicator.style.transform = `rotate(${bearing}deg)`;
+        },
+        error => {
+          this.error = error;
+        }
+      )
+    } else {
+      this.error = "Browser does not support the Geolocation API"
+    }
   },
   computed: {
-    // coords() {
-    //   return { coords, locatedAt, error, resume, pause } = useGeolocation()
-    // }
+
   },
   methods: {
     calculateBearing(lat1, lon1, lat2, lon2) {
@@ -63,9 +79,6 @@ export default {
       bearing = (bearing + 360) % 360; // Normalize to 0-360 degrees
       return bearing;
     },
-    test() {
-      console.log('test');
-    } 
   }
 }
 </script>
