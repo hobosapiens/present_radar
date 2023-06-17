@@ -1,24 +1,29 @@
 <template>
   <div id="app">
-      <div v-if="distance > 20 && distance < 50">
-        Hot!
-      </div>
-      <div v-if="distance <= 20">
-        Distance is {{ distance }}
-      </div>
-      <div>{{ coordinates }}</div>
-      <input type="text" v-model="destination.latitude">
-      <input type="text" v-model="destination.longitude">
-      <div class="arrow" ref="arrow" style="margin: 20px 0;">⬆️</div>
-      <div v-if="error" class="error">
+      <div v-show="started">
+        <div v-if="distance > 20 && distance < 50">
+          Hot!
+        </div>
+        <div v-if="distance <= 20">
+          Distance is {{ distance }}
+        </div>
+        <div>{{ coordinates }}</div>
+        <input type="text" v-model="destination.latitude">
+        <input type="text" v-model="destination.longitude">
+        <div class="arrow" ref="arrow" style="margin: 20px 0;">⬆️</div>
+        <div v-if="error" class="error">
+          <hr>
+          {{ error }}
+        </div>
         <hr>
-        {{ error }}
+        <div v-if="log" class="log">
+          <ul v-for="(item, index) in log" :key="index">
+            <li >{{ item }}</li>
+          </ul>
+        </div>
       </div>
-      <hr>
-      <div v-if="log" class="log">
-        <ul v-for="(item, index) in log" :key="index">
-          <li >{{ item }}</li>
-        </ul>
+      <div v-show="!started">
+        <button @click="started = true">Start</button>
       </div>
   </div>
 </template>
@@ -33,17 +38,19 @@ export default {
   components: {},
   data() {
     return {
+      started: false,
       coordinates: {
         latitude: 0,
         longitude: 0
       },
       destination: {
-        latitude: 59.262714, 
-        longitude: 18.040497,  
+        latitude: 59.261531,
+        longitude: 18.039093,  
       },
       distance: null,
       error: '',
       log: [],
+      audio: new Audio(audioFile),
     }
   },
   created() {
@@ -61,9 +68,10 @@ export default {
           this.coordinates.longitude = longitude;
 
           const bearing = calculateBearing(latitude, longitude, this.destination.latitude, this.destination.longitude);
-
-          const compassIndicator = this.$refs.arrow;
-          compassIndicator.style.transform = `rotate(${bearing}deg)`;
+          if(this.started) {
+            const compassIndicator = this.$refs.arrow;
+            compassIndicator.style.transform = `rotate(${bearing}deg)`;
+          }
         },
         error => {
           this.error = error;
@@ -74,25 +82,24 @@ export default {
     }
   },
   computed: {
-
   },
   methods: {
-    playAudio() {
-      const audio = new Audio(audioFile);
-      audio.play();
-    },
+    // playAudio() {
+    //   const audio = new Audio(audioFile);
+    //   audio.play();
+    // },
   },
   watch: {
     coordinates: {
       handler() {
-        // console.log('distance: ', 
-        //   distanceInMeters(
-        //     this.coordinates.latitude, 
-        //     this.coordinates.longitude,
-        //     this.destination.latitude,
-        //     this.coordinates.longitude
-        //   )
-        // );
+        console.log('distance: ', 
+          distanceInMeters(
+            this.coordinates.latitude, 
+            this.coordinates.longitude,
+            this.destination.latitude,
+            this.coordinates.longitude
+          )
+        );
         let distance = distanceInMeters(
             this.coordinates.latitude, 
             this.coordinates.longitude,
@@ -101,10 +108,11 @@ export default {
           )
 
         this.distance = distance;
-        // if(distance < 50) {
-
-        //   this.playAudio()
-        // }
+        if(distance < 50 && this.started) {
+          this.audio.play();
+        } else {
+          this.audio.pause();
+        }
       },
       deep: true,
     },
