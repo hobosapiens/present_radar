@@ -1,41 +1,43 @@
 <template>
   <div id="app">
-      <div v-show="started">
-        <div v-if="distance > 20 && distance < 50">
-          Hot!
-        </div>
-        <div v-if="distance <= 20">
-          Distance is {{ distance }}
-        </div>
-        <div>{{ coordinates }}</div>
-        <input type="text" v-model="destination.latitude">
-        <input type="text" v-model="destination.longitude">
-        <div class="arrow" ref="arrow" style="margin: 20px 0;">⬆️</div>
-        <div v-if="error" class="error">
-          <hr>
-          {{ error }}
-        </div>
+    <Stage_1 />
+    <div v-show="started">
+      <div>
+        Distance is {{ distance }}
+      </div>
+      <div>{{ coordinates }}</div>
+      <input type="text" v-model="destination.latitude">
+      <input type="text" v-model="destination.longitude">
+      <DestinationCompass :bearing="bearing" :distance="distance" />
+      <div v-if="error" class="error">
         <hr>
-        <div v-if="log" class="log">
-          <ul v-for="(item, index) in log" :key="index">
-            <li >{{ item }}</li>
-          </ul>
-        </div>
+        {{ error }}
       </div>
-      <div v-show="!started">
-        <button @click="started = true">Start</button>
+      <hr>
+      <div v-if="log" class="log">
+        <ul v-for="(item, index) in log" :key="index">
+          <li>{{ item }}</li>
+        </ul>
       </div>
+    </div>
+    <div v-show="!started">
+      <button @click="started = true">Start</button>
+    </div>
   </div>
 </template>
 
 <script>
+import DestinationCompass from "./components/DestinationCompass.vue";
+import Stage_1 from "./components/Stage-1.vue";
 import distanceInMeters from "@/assets/utils/distanceInMeters";
 import calculateBearing from "@/assets/utils/calculateBearing";
-import audioFile from '@/assets/sound/radar.wav';
 
 export default {
   name: 'App',
-  components: {},
+  components: {
+    DestinationCompass,
+    Stage_1
+  },
   data() {
     return {
       started: false,
@@ -44,13 +46,14 @@ export default {
         longitude: 0
       },
       destination: {
-        latitude: 59.261531,
-        longitude: 18.039093,  
+        latitude: 59.262034, 
+        longitude: 18.038672,
       },
+      activeStage: 1,
       distance: null,
+      bearing: null,
       error: '',
       log: [],
-      audio: new Audio(audioFile),
     }
   },
   created() {
@@ -60,7 +63,7 @@ export default {
           console.log(position.coords.heading);
           this.log.push({
             heading: position.coords.heading,
-            latitude: position.coords.latitude, 
+            latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           });
           const { latitude, longitude } = position.coords;
@@ -68,10 +71,7 @@ export default {
           this.coordinates.longitude = longitude;
 
           const bearing = calculateBearing(latitude, longitude, this.destination.latitude, this.destination.longitude);
-          if(this.started) {
-            const compassIndicator = this.$refs.arrow;
-            compassIndicator.style.transform = `rotate(${bearing}deg)`;
-          }
+          this.bearing = bearing;
         },
         error => {
           this.error = error;
@@ -84,35 +84,27 @@ export default {
   computed: {
   },
   methods: {
-    // playAudio() {
-    //   const audio = new Audio(audioFile);
-    //   audio.play();
-    // },
+
   },
   watch: {
     coordinates: {
       handler() {
-        console.log('distance: ', 
+        console.log('distance: ',
           distanceInMeters(
-            this.coordinates.latitude, 
+            this.coordinates.latitude,
             this.coordinates.longitude,
             this.destination.latitude,
             this.coordinates.longitude
           )
         );
         let distance = distanceInMeters(
-            this.coordinates.latitude, 
-            this.coordinates.longitude,
-            this.destination.latitude,
-            this.coordinates.longitude
-          )
+          this.coordinates.latitude,
+          this.coordinates.longitude,
+          this.destination.latitude,
+          this.coordinates.longitude
+        )
 
         this.distance = distance;
-        if(distance < 50 && this.started) {
-          this.audio.play();
-        } else {
-          this.audio.pause();
-        }
       },
       deep: true,
     },
