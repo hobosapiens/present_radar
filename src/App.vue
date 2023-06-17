@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+      <div v-if="distance > 20 && distance < 50">
+        Hot!
+      </div>
+      <div v-if="distance <= 20">
+        Distance is {{ distance }}
+      </div>
       <div>{{ coordinates }}</div>
       <input type="text" v-model="destination.latitude">
       <input type="text" v-model="destination.longitude">
@@ -18,6 +24,9 @@
 </template>
 
 <script>
+import distanceInMeters from "@/assets/utils/distanceInMeters";
+import calculateBearing from "@/assets/utils/calculateBearing";
+import audioFile from '@/assets/sound/radar.wav';
 
 export default {
   name: 'App',
@@ -29,14 +38,12 @@ export default {
         longitude: 0
       },
       destination: {
-        latitude: 59.264805,  
-        longitude: 18.034346,
+        latitude: 59.262714, 
+        longitude: 18.040497,  
       },
-      bearing: 0,
+      distance: null,
       error: '',
-      dest_lat: 59.264805,
-      dest_lng: 18.034346,
-      log: []
+      log: [],
     }
   },
   created() {
@@ -53,8 +60,7 @@ export default {
           this.coordinates.latitude = latitude;
           this.coordinates.longitude = longitude;
 
-          const bearing = this.calculateBearing(latitude, longitude, this.destination.latitude, this.destination.longitude);
-          this.bearing = bearing;
+          const bearing = calculateBearing(latitude, longitude, this.destination.latitude, this.destination.longitude);
 
           const compassIndicator = this.$refs.arrow;
           compassIndicator.style.transform = `rotate(${bearing}deg)`;
@@ -71,13 +77,36 @@ export default {
 
   },
   methods: {
-    calculateBearing(lat1, lon1, lat2, lon2) {
-      const dLon = (lon2 - lon1) * Math.PI / 180;
-      const y = Math.sin(dLon) * Math.cos(lat2 * Math.PI / 180);
-      const x = Math.cos(lat1 * Math.PI / 180) * Math.sin(lat2 * Math.PI / 180) - Math.sin(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.cos(dLon);
-      let bearing = Math.atan2(y, x) * 180 / Math.PI;
-      bearing = (bearing + 360) % 360; // Normalize to 0-360 degrees
-      return bearing;
+    playAudio() {
+      const audio = new Audio(audioFile);
+      audio.play();
+    },
+  },
+  watch: {
+    coordinates: {
+      handler() {
+        // console.log('distance: ', 
+        //   distanceInMeters(
+        //     this.coordinates.latitude, 
+        //     this.coordinates.longitude,
+        //     this.destination.latitude,
+        //     this.coordinates.longitude
+        //   )
+        // );
+        let distance = distanceInMeters(
+            this.coordinates.latitude, 
+            this.coordinates.longitude,
+            this.destination.latitude,
+            this.coordinates.longitude
+          )
+
+        this.distance = distance;
+        // if(distance < 50) {
+
+        //   this.playAudio()
+        // }
+      },
+      deep: true,
     },
   }
 }
