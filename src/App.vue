@@ -46,8 +46,8 @@ export default {
         longitude: 0
       },
       destination: {
-        latitude: 59.262034, 
-        longitude: 18.038672,
+        latitude: 59.261348, 
+        longitude: 18.039038,
       },
       activeStage: 1,
       distance: null,

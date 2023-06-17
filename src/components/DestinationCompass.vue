@@ -1,7 +1,7 @@
 <template>
   <div v-if="bearing" class="compass">
     <div
-      :class="{showPulsation: pulse}" 
+      :class="{pulse: showPulsation}" 
       class="compass__wrapper"
     >
       <ArrowIcon :rotate="bearing" />
