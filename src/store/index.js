@@ -24,9 +24,7 @@ export default new Vuex.Store({
             lat: 59.261947, 
             lng: 18.038153,
         },
-        currentStage: {
-            name: 'new',
-        },
+        currentStage: 'new',
         log: []
     },
 
@@ -36,6 +34,9 @@ export default new Vuex.Store({
         },
         getDestination(state) {
             return state.destination;
+        },
+        getCurrentStage(state) {
+            return state.currentStage;
         },
         getLog(state) {
             return state.log;
@@ -49,6 +50,9 @@ export default new Vuex.Store({
         SET_DESTINATION(state, destination) {
             state.destination = destination;
         },
+        SET_CURRENT_STAGE(state, stage) {
+            state.currentStage = stage;
+        },
         SET_LOG(state, log) {
             state.log.push(log);
         },
@@ -60,6 +64,9 @@ export default new Vuex.Store({
         },
         SET_DESTINATION({ commit }, destination) {
             commit('SET_DESTINATION', destination);
+        },
+        SET_CURRENT_STAGE({ commit }, stage) {
+            commit('SET_CURRENT_STAGE', stage);
         },
         SET_LOG({ commit }, log) {
             commit('SET_LOG', log);
