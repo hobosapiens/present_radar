@@ -1,77 +1,40 @@
 <template>
-  <div id="app">
-    <Stage_1 />
-    <div v-show="started">
-      <div>
-        Distance is {{ distance }}
-      </div>
-      <div>{{ coordinates }}</div>
-      <input type="text" v-model="destination.latitude">
-      <input type="text" v-model="destination.longitude">
-      <DestinationCompass :bearing="bearing" :distance="distance" />
-      <div v-if="error" class="error">
-        <hr>
-        {{ error }}
-      </div>
-      <hr>
-      <div v-if="log" class="log">
-        <ul v-for="(item, index) in log" :key="index">
-          <li>{{ item }}</li>
-        </ul>
-      </div>
-    </div>
-    <div v-show="!started">
-      <button @click="started = true">Start</button>
-    </div>
-  </div>
+  <router-view />
 </template>
 
 <script>
-import DestinationCompass from "./components/DestinationCompass.vue";
-import Stage_1 from "./components/Stage-1.vue";
-import distanceInMeters from "@/assets/utils/distanceInMeters";
-import calculateBearing from "@/assets/utils/calculateBearing";
+import { mapActions, mapGetters } from "vuex";
+import calculateBearing from '@/utils/calculateBearing.js'
+import distanceInMeters from '@/utils/distanceInMeters.js'
 
 export default {
   name: 'App',
-  components: {
-    DestinationCompass,
-    Stage_1
-  },
   data() {
     return {
-      started: false,
-      coordinates: {
-        latitude: 0,
-        longitude: 0
+      location: {
+        lat: 0,
+        lng: 0,
       },
-      destination: {
-        latitude: 59.261348, 
-        longitude: 18.039038,
-      },
-      activeStage: 1,
-      distance: null,
-      bearing: null,
+      heading: 0,
+      bearing: 0,
+      distance: 0,
       error: '',
-      log: [],
     }
   },
   created() {
     if ("geolocation" in navigator) {
       navigator.geolocation.watchPosition(
         position => {
-          console.log(position.coords.heading);
-          this.log.push({
+          const { latitude, longitude, heading } = position.coords;
+          this.location.lat = latitude;
+          this.location.lng = longitude;
+          this.heading = heading;
+
+          this.SET_LOG({
             heading: position.coords.heading,
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           });
-          const { latitude, longitude } = position.coords;
-          this.coordinates.latitude = latitude;
-          this.coordinates.longitude = longitude;
-
-          const bearing = calculateBearing(latitude, longitude, this.destination.latitude, this.destination.longitude);
-          this.bearing = bearing;
         },
         error => {
           this.error = error;
@@ -82,29 +45,34 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['getDestination'])
   },
   methods: {
-
+    ...mapActions(['SET_GEO', 'SET_LOG']),
   },
   watch: {
-    coordinates: {
+    location: {
       handler() {
-        console.log('distance: ',
-          distanceInMeters(
-            this.coordinates.latitude,
-            this.coordinates.longitude,
-            this.destination.latitude,
-            this.coordinates.longitude
-          )
-        );
-        let distance = distanceInMeters(
-          this.coordinates.latitude,
-          this.coordinates.longitude,
-          this.destination.latitude,
-          this.coordinates.longitude
+        this.distance = distanceInMeters(
+          this.location.lat,
+          this.location.lng,
+          this.getDestination.lat,
+          this.getDestination.lng
         )
 
-        this.distance = distance;
+        this.bearing = calculateBearing(
+          this.location.lat,
+          this.location.lng,
+          this.getDestination.lat,
+          this.getDestination.lng
+        )
+
+        this.SET_GEO({
+          location: this.location,
+          heading: this.heading,
+          bearing: this.bearing,
+          distance: this.distance,
+        })
       },
       deep: true,
     },
