@@ -1,17 +1,20 @@
 <template>
-  <div class="hello">
-      <div>
-        {{ getLog }}
+  <div>
+    <Compass />
+    <div class="log">
+      {{ getLog }}
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import Compass from '@/components/Compass.vue';
 
 export default {
   name: 'HomePage',
-  props: {
+  components: {
+    Compass
   },
   computed: {
     ...mapGetters(['getLog'])

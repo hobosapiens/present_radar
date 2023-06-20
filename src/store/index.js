@@ -13,16 +13,16 @@ export default new Vuex.Store({
     state: {
         GEO: {
             location: {
-                lat: 0,
-                lng: 0,
+                lat: null,
+                lng: null,
             },
-            heading: 0,
-            bearing: 0,
-            distance: 0,
+            heading: null,
+            bearing: null,
+            distance: null,
         },
         destination: {
-            lat: 59.261348, 
-            lng: 18.039038,
+            lat: 59.261947, 
+            lng: 18.038153,
         },
         currentStage: {
             name: 'new',
@@ -32,7 +32,7 @@ export default new Vuex.Store({
 
     getters: {
         getGEO(state) {
-            return state.count;
+            return state.GEO;
         },
         getDestination(state) {
             return state.destination;

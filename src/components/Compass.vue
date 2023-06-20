@@ -1,29 +1,30 @@
 <template>
-  <div v-if="bearing" class="compass">
+  <div v-if="getGEO.distance" class="compass">
+    <div class="distance">
+      {{ this.getGEO?.distance }}
+    </div>
     <div
       :class="{pulse: showPulsation}" 
       class="compass__wrapper"
     >
-      <ArrowIcon :rotate="bearing" />
+      <ArrowIcon :rotate="this.getGEO?.bearing" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import ArrowIcon from '@/components/ArrowIcon.vue';
 
 export default {
-  name: 'DestinationCompass',
-  props: {
-    bearing: String,
-    distance: String
-  },
+  name: 'Compass',
   components: {
     ArrowIcon
   },
   computed: {
+    ...mapGetters(['getGEO']),
     showPulsation() {
-      return this.distance < 30;
+      return this.getGEO?.distance < 30;
     }
   }
 }
