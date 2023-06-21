@@ -1,3 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+html {
+  box-sizing: border-box;
+  max-width: 100%;
+  font-family: 'Amatic SC', cursive;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: none;
   background-color: #81C4D1;
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px black;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
 }

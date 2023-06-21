@@ -6,7 +6,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 // Stages: {
-//     name: 'new', 'started', 'stage_1', 'stage_2', ..., 'finished'
+//     name: 'disclaimer', 'started', 'stage_1', 'stage_2', ..., 'finished'
 // }
 
 export default new Vuex.Store({
@@ -24,7 +24,7 @@ export default new Vuex.Store({
             lat: 59.261947, 
             lng: 18.038153,
         },
-        currentStage: 'new',
+        currentStage: 'disclaimer',
         log: []
     },
 

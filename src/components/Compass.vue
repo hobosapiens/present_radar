@@ -43,6 +43,7 @@ export default {
 .compass-inner {
   width: 340px;
   height: 340px;
+  box-sizing: content-box;
   background-color: #3D3D3D;
   border-radius: 100%;
   position: relative;
