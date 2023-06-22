@@ -1,10 +1,8 @@
 <template>
-  <div ontouchstart="">
-    <div :class="['button', buttonClass]" @click="handleClick">
-      <a href="#">
-        <slot></slot>
-      </a>
-    </div>
+  <div :class="['button', buttonClass]" @click="handleClick">
+    <a href="#">
+      <slot></slot>
+    </a>
   </div>
 </template>
 

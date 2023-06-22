@@ -1,9 +1,6 @@
 <template>
   <div class="disclaimer">
-    <img 
-      src="@/assets/images/adventure_time.png" 
-      class="disclaimer__img"
-    >
+    <Banner />
     <div class="disclaimer__text__wrapper">
       <p class="disclaimer__text">
       <span>Ксюша, тебя ждут захватывающие приключения!</span><br />
@@ -28,11 +25,13 @@
 </template>
 
 <script>
+import Banner from '@/components/Banner.vue';
 import Button from '@/components/Button.vue';
 
 export default {
   name: 'Compass',
   components: {
+    Banner,
     Button
   }
 }
