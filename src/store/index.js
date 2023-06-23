@@ -25,6 +25,23 @@ export default new Vuex.Store({
             lng: 18.038153,
         },
         currentStage: 'disclaimer',
+        questions: {
+            1: {
+                video_name: 'ksusha',
+                video_number: '42342423',
+                answer: ['23', 'двадцать три'],
+            },
+            2: {
+                video_name: 'ksusha',
+                video_number: '42342423',
+                answer: ['23', 'двадцать три'],
+            },
+            3: {
+                video_name: 'ksusha',
+                video_number: '42342423',
+                answer: ['23', 'двадцать три'],
+            },
+        },
         log: []
     },
 
