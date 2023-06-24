@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import store from '@/store';
 import { mapActions, mapGetters } from "vuex";
 import calculateBearing from '@/utils/calculateBearing.js'
 import distanceInMeters from '@/utils/distanceInMeters.js'
@@ -42,23 +41,6 @@ export default {
         }
       )
 
-      navigator.permissions.query({ name: 'geolocation' })
-      .then(function (permissionStatus) {
-          if (permissionStatus.state === 'granted') {
-              store.dispatch('SET_ALLOWED', true);
-          } 
-          permissionStatus.onchange = function () {
-            if (permissionStatus.state === 'granted') {
-              store.dispatch('SET_ALLOWED', true);
-            } else if (permissionStatus.state === 'denied') {
-              store.dispatch('SET_ALLOWED', false);
-            }
-          };
-        })
-        .catch(function () {
-          this.error = "Error checking geolocation permission"
-        });
-
     } else {
       this.error = "Browser does not support the Geolocation API"
     }
@@ -67,7 +49,7 @@ export default {
     ...mapGetters(['getDestination'])
   },
   methods: {
-    ...mapActions(['SET_ALLOWED', 'SET_GEO', 'SET_LOG']),
+    ...mapActions(['SET_GEO', 'SET_LOG']),
   },
   watch: {
     location: {

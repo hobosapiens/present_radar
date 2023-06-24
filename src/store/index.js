@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import { getLocalStorage, setLocalStorage } from '../utils/storage'
+import { getLocalStorage } from '../utils/storage'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        allowed: false,
+        first_start: getLocalStorage('first_start') ?? true,
         GEO: {
             location: {
                 lat: null,
@@ -61,9 +61,6 @@ export default new Vuex.Store({
     },
 
     getters: {
-        getAllowed(state) {
-            return state.allowed;
-        },
         getGEO(state) {
             return state.GEO;
         },
@@ -82,8 +79,8 @@ export default new Vuex.Store({
     },
 
     mutations: {
-        SET_ALLOWED(state, allowed) {
-            state.allowed = allowed;
+        SET_FIRST_START(state, first_start) {
+            state.first_start = first_start;
         },
         SET_GEO(state, GEO) {
             state.GEO = GEO;
@@ -100,8 +97,8 @@ export default new Vuex.Store({
     },
 
     actions: {
-        SET_ALLOWED({ commit }, allowed) {
-            commit('SET_ALLOWED', allowed);
+        SET_FIRST_START({ commit }, first_start) {
+            commit('SET_FIRST_START', first_start);
         },
         SET_GEO({ commit }, GEO) {
             commit('SET_GEO', GEO);

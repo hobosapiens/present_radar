@@ -89,7 +89,7 @@ export default {
 
   &__container {
     display: flex;
-    height: 100vh;
+    height: 100%;
   }
 
   &__fireworks {
@@ -115,7 +115,7 @@ export default {
     width: 42px;
     z-index: 2;
     transform: rotate(-3deg);
-    filter: grayscale(0.2) sepia(0.1);
+    filter: grayscale(0.3) sepia(0.3);
   }
 
   &__text {

@@ -1,10 +1,9 @@
 <template>
-  <div v-if="allowed" class="level-page">
+  <div class="level-page">
     <Disclaimer @click="nextStage(1)" v-if="this.currentLevel === 0" />
-      <Compass :distance="GEO.distance" v-else-if="GEO.distance > 10" />
-      <Answer :text="log" :answers="levelData.answers" v-else />
+    <Compass :distance="GEO.distance" v-else-if="GEO.distance > 10" />
+    <Answer :text="log" :answers="levelData.answers" v-else />
   </div>
-  <loader v-else text="Разреши использование геолокации!!!" />
 </template>
 
 <script>
@@ -12,20 +11,18 @@ import { mapActions, mapState } from "vuex";
 import Disclaimer from '@/components/Disclaimer.vue';
 import Compass from '@/components/Compass.vue';
 import Answer from '@/components/Answer.vue';
-import Loader from '@/components/Loader.vue';
 
 export default {
   name: 'LevelPage',
   components: {
     Disclaimer,
     Compass,
-    Answer,
-    Loader
+    Answer
   },
   data: () => ({
   }),
   computed: {
-    ...mapState(['allowed', 'GEO', 'currentLevel', 'levels', 'log']),
+    ...mapState(['GEO', 'currentLevel', 'levels', 'log']),
     levelData() {
       return this.levels?.find(level => level.id === this.currentLevel);
     },
@@ -46,4 +43,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.level-page {
+  height: 100%;
+}
 </style>
