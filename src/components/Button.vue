@@ -32,9 +32,8 @@ export default {
 
 .button a {
   color: white;
-  font-family: Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 38px;
   text-align: center;
   text-decoration: none;
   background-color: #FFA12B;

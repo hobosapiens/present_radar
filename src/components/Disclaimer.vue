@@ -20,7 +20,7 @@
       Жми на кнопку, когда будешь готова!
     </p>
     </div>
-    <Button @click="$emit('click')">ПОЕХАЛИ!!!</Button>
+    <Button @click="$emit('click')">ВПЕРЕД!!!</Button>
   </div>
 </template>
 

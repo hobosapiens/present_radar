@@ -1,24 +1,68 @@
 <template>
   <div class="answer__container">
+    <img v-if="isAnswersValid" src="@/assets/images/gif/firework.gif" class="answer__fireworks" />
     <div class="answer">
       <img class="answer__img" src="@/assets/images/borshevskiy.png">
       <img class="answer__mouth" src="@/assets/images/gif/mouth.gif">
       <div class="answer__text">
-        {{ text }}
-        <slot></slot>
+        <span>{{ text }}</span>
+        <input
+          v-for="(_, index) in answers" 
+          v-model="inputValues[index]"
+          :key="index" 
+          class="answer__input"
+          type="text"
+          :disabled="isAnswersValid"
+        />
+        <button v-if="isAnswersValid" @click="validateInputs" class="answer__button">Вперед!</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import TextInput from '@/components/TextInput.vue';
+
 export default {
   name: 'Answer',
+  comments: {
+    TextInput
+  },
   props: {
+    answers: {
+      type: Array,
+      required: true
+    },
     text: {
       type: String,
       default: 'Загрузка...'
     }
+  },
+  data: () => ({
+    inputValues: [''],
+    isAnswersValid: false
+  }),
+  methods: {
+    validateInputs() {
+      let allValid = [];
+      for (let i = 0; i < this.answers.length; i++) {
+        if (this.answers[i].includes(this.inputValues[i]?.toLocaleLowerCase())) {
+          allValid.push(true);
+        } else {
+          return false;
+        }
+      }
+      return allValid.every(value => value);
+    }
+  },
+  watch: {
+    inputValues: {
+      handler() {
+        if (this.validateInputs()) {
+          this.isAnswersValid = true
+        }
+      },
+    },
   }
 };
 </script>
@@ -30,7 +74,7 @@ export default {
   width: 100%;
   position: relative;
   margin-top: auto;
-  padding-bottom: 60px;
+  padding-bottom: 100px;
 
   &::after {
     content: '';
@@ -46,6 +90,14 @@ export default {
   &__container {
     display: flex;
     height: 100vh;
+  }
+
+  &__fireworks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
   }
 
   &__img {
@@ -95,6 +147,39 @@ export default {
       border-top-width: 0px;
       margin-top: 0px;
     }
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 20px;
+    font-family: 'Amatic SC', cursive;
+    margin-top: 10px;
+
+    &:last-of-type {
+      margin-bottom: 10px;
+    }
+
+    &::-webkit-input-placeholder {
+      font-family: 'Amatic SC', cursive;
+      font-size: 20px;
+    }
+
+    &:-moz-placeholder {
+      font-family: 'Amatic SC', cursive;
+      font-size: 20px;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    padding: 20px 10px;
+    border-radius: 15px;
+    background: #FFA12B;
+    font-family: 'Amatic SC', cursive;
+    font-size: 24px;
+    color: white;
   }
 }
 </style>
