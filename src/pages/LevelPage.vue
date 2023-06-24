@@ -1,12 +1,10 @@
 <template>
   <div v-if="allowed" class="level-page">
-    <Disclaimer @click="nextStage('started')" v-if="this.currentStage === 'disclaimer'" />
-    <div v-else class="level-page__container">
-      <Compass :distance="GEO.distance" v-if="GEO.distance > 10" />
+    <Disclaimer @click="nextStage(2)" v-if="this.currentLevel === 0" />
+      <Compass :distance="GEO.distance" v-else-if="GEO.distance > 10" />
       <Answer :text="log" v-else>
         <TextInput v-model="answer" placeholder="Введи ответ" class="answer-input" />
       </Answer>
-    </div>
   </div>
   <loader v-else text="Разреши использование геолокации!!!" />
 </template>
@@ -29,15 +27,24 @@ export default {
     Loader
   },
   data: () => ({
-    answer: ''
+    answer: '',
   }),
   computed: {
-    ...mapState(['allowed', 'GEO', 'currentStage', 'log'])
+    ...mapState(['allowed', 'GEO', 'currentLevel', 'levels', 'log']),
+    levelData() {
+      return this.levels?.find(level => level.id === this.currentLevel);
+    },
+    isAnswerCorrect() {
+      return this.answer.toLocaleLowerCase()
+    },
+    isBlitz() {
+      return this.levelData.isBlitz
+    }
   },
   methods: {
-    ...mapActions(['SET_CURRENT_STAGE']),
+    ...mapActions(['SET_CURRENT_LEVEL']),
     nextStage(stage) {
-      this.SET_CURRENT_STAGE(stage)
+      this.SET_CURRENT_LEVEL(stage)
     }
   }
 }

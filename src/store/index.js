@@ -5,10 +5,6 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-// Stages: {
-//     name: 'disclaimer', 'started', 'stage_1', 'stage_2', ..., 'finished'
-// }
-
 export default new Vuex.Store({
     state: {
         allowed: false,
@@ -24,41 +20,40 @@ export default new Vuex.Store({
         destination: {
             lat: 59.261324, 
             lng: 18.038692,
+            // дальше 10м
+            // lat: 59.261252, 
+            // lng: 18.038330,
         },
-        currentStage: 'disclaimer',
+        currentLevel: 0,
         levels: [
             {
                 id: 1,
-                from: {
-                    lat: 0,
-                    lng: 0,
-                },
-                to: {
+                loaction: {
                     lat: 0,
                     lng: 0,
                 },
                 describe_text: 'Какой-то текст',
                 clue_text: 'Какой-то текст посказки',
                 success_text: 'Какой-то текст успеваемности',
+                isBlitz: false,
                 answers: [
                     ['пенопласт', 'пенапласт']
                 ],
             },
             {
                 id: 2,
-                from: {
-                    lat: 0,
-                    lng: 0,
-                },
-                to: {
+                loaction: {
                     lat: 0,
                     lng: 0,
                 },
                 describe_text: 'Какой-то текст',
                 clue_text: 'Какой-то текст посказки',
                 success_text: 'Какой-то текст успеваемности',
+                isBlitz: true,
                 answers: [
-                    ['диарея', 'деарея']
+                    ['диарея', 'деарея'],
+                    ['пенопласт', 'пенапласт'],
+                    ['дерьмопласт']
                 ],
             },
         ],
@@ -75,8 +70,8 @@ export default new Vuex.Store({
         getDestination(state) {
             return state.destination;
         },
-        getCurrentStage(state) {
-            return state.currentStage;
+        getCurrentLevel(state) {
+            return state.currentLevel;
         },
         getLevels(state) {
             return state.levels;
@@ -96,8 +91,8 @@ export default new Vuex.Store({
         SET_DESTINATION(state, destination) {
             state.destination = destination;
         },
-        SET_CURRENT_STAGE(state, stage) {
-            state.currentStage = stage;
+        SET_CURRENT_LEVEL(state, level) {
+            state.currentLevel = level;
         },
         SET_LOG(state, log) {
             state.log.push(log);
@@ -114,8 +109,8 @@ export default new Vuex.Store({
         SET_DESTINATION({ commit }, destination) {
             commit('SET_DESTINATION', destination);
         },
-        SET_CURRENT_STAGE({ commit }, stage) {
-            commit('SET_CURRENT_STAGE', stage);
+        SET_CURRENT_LEVEL({ commit }, level) {
+            commit('SET_CURRENT_LEVEL', level);
         },
         SET_LOG({ commit }, log) {
             commit('SET_LOG', log);
