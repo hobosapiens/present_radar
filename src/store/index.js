@@ -11,6 +11,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
+        allowed: false,
         GEO: {
             location: {
                 lat: null,
@@ -21,8 +22,8 @@ export default new Vuex.Store({
             distance: null,
         },
         destination: {
-            lat: 59.261947, 
-            lng: 18.038153,
+            lat: 59.261324, 
+            lng: 18.038692,
         },
         currentStage: 'disclaimer',
         questions: {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
     },
 
     getters: {
+        getAllowed(state) {
+            return state.allowed;
+        },
         getGEO(state) {
             return state.GEO;
         },
@@ -61,6 +65,9 @@ export default new Vuex.Store({
     },
 
     mutations: {
+        SET_ALLOWED(state, allowed) {
+            state.allowed = allowed;
+        },
         SET_GEO(state, GEO) {
             state.GEO = GEO;
         },
@@ -76,6 +83,9 @@ export default new Vuex.Store({
     },
 
     actions: {
+        SET_ALLOWED({ commit }, allowed) {
+            commit('SET_ALLOWED', allowed);
+        },
         SET_GEO({ commit }, GEO) {
             commit('SET_GEO', GEO);
         },

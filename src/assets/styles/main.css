@@ -15,10 +15,11 @@ html {
 }
 
 body {
+  max-width: 480px;
+  margin: auto;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  padding: 0;
   -webkit-text-size-adjust: none;
   background-color: #81C4D1;
   color: white;

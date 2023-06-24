@@ -1,13 +1,15 @@
 <template>
-  <div class="compass">
-    <div class="compass-inner">
-      <div class="north">N</div>
-      <div
-      :style="`transform: rotate(${this.getGEO?.bearing}deg)`"
-        class="main-arrow"
-      >
-        <div class="arrow-up"></div>
-        <div class="arrow-down"></div>
+  <div class="compass__container">
+    <span>{{ this.getGEO?.distance }}</span>
+    <div class="compass__north">
+      <span>N</span>
+    </div>
+    <div :class="{'pulse': showPulsation}" class="compass">
+      <div class="compass-inner">
+        <div :style="`transform: rotate(${this.getGEO?.bearing}deg)`" class="main-arrow">
+          <div class="arrow-up"></div>
+          <div class="arrow-down"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -40,6 +42,35 @@ export default {
   margin: 0 auto;
 }
 
+.compass::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 3px 1px #000000;
+}
+
+.compass__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 30px;
+}
+
+.compass__north {
+  margin-bottom: 20px;
+}
+
+.compass__north span {
+  font-size: 64px;
+}
+
 .compass-inner {
   width: 340px;
   height: 340px;
@@ -50,6 +81,7 @@ export default {
   left: 27.5px;
   top: 27.5px;
   border: 3px solid #C5C5C5;
+  box-shadow: 0 0 3px 3px #1e1e1eba inset;
 }
 
 .main-arrow {
@@ -82,15 +114,6 @@ export default {
   position: relative;
 }
 
-.north {
-  font-size: 36px;
-  font-family: 'Lobster Two', cursive;
-  color: #FFF;
-  position: absolute;
-  left: 155px;
-  top: 10px;
-}
-
 @media (max-width: 600px) {
   .compass {
     width: 200px;
@@ -122,133 +145,6 @@ export default {
     border-bottom: 82.5px solid #F3F3F3;
     border-left: 7.5px solid transparent;
     border-right: 7.5px solid transparent;
-  }
-
-  .north {
-    left: 78px;
-    top: 10px;
-    font-size: 16px;
-  }
-}
-
-
-@media (max-width: 600px) {
-  .compass {
-    width: 200px;
-    height: 200px;
-    text-align: center;
-  }
-
-  .compass-inner {
-    width: 170px;
-    height: 170px;
-    left: 13px;
-    top: 13px;
-  }
-
-  .main-arrow {
-    width: 30px;
-    left: 78px;
-    width: 15px;
-    padding-top: 3px;
-  }
-
-  .arrow-up {
-    border-bottom: 82.5px solid #EF5052;
-    border-left: 7.5px solid transparent;
-    border-right: 7.5px solid transparent;
-  }
-
-  .arrow-down {
-    border-bottom: 82.5px solid #F3F3F3;
-    border-left: 7.5px solid transparent;
-    border-right: 7.5px solid transparent;
-  }
-
-  .north {
-    left: 78px;
-    top: 10px;
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 600px) {
-  .compass {
-    width: 200px;
-    height: 200px;
-    text-align: center;
-  }
-
-  .compass-inner {
-    width: 170px;
-    height: 170px;
-    left: 13px;
-    top: 13px;
-  }
-
-  .main-arrow {
-    width: 30px;
-    left: 78px;
-    width: 15px;
-    padding-top: 3px;
-  }
-
-  .arrow-up {
-    border-bottom: 82.5px solid #EF5052;
-    border-left: 7.5px solid transparent;
-    border-right: 7.5px solid transparent;
-  }
-
-  .arrow-down {
-    border-bottom: 82.5px solid #F3F3F3;
-    border-left: 7.5px solid transparent;
-    border-right: 7.5px solid transparent;
-  }
-
-  .north {
-    left: 78px;
-    top: 10px;
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 600px) {
-  .compass {
-    width: 200px;
-    height: 200px;
-    text-align: center;
-  }
-
-  .compass-inner {
-    width: 170px;
-    height: 170px;
-    left: 13px;
-    top: 13px;
-  }
-
-  .main-arrow {
-    width: 30px;
-    left: 78px;
-    width: 15px;
-    padding-top: 3px;
-  }
-
-  .arrow-up {
-    border-bottom: 82.5px solid #EF5052;
-    border-left: 7.5px solid transparent;
-    border-right: 7.5px solid transparent;
-  }
-
-  .arrow-down {
-    border-bottom: 82.5px solid #F3F3F3;
-    border-left: 7.5px solid transparent;
-    border-right: 7.5px solid transparent;
-  }
-
-  .north {
-    left: 78px;
-    top: 10px;
-    font-size: 16px;
   }
 }
 
@@ -272,8 +168,8 @@ export default {
 
 @keyframes pulse {
   0% {
-    -moz-box-shadow: 0 0 0 0 rgba(44, 204, 121, 0.4);
-    box-shadow: 0 0 0 0 rgba(44, 204, 121, 0.4);
+    -moz-box-shadow: 0 0 0 0 rgb(20 141 183 / 67%);
+    box-shadow: 0 0 0 0 rgb(20 141 183 / 67%);
   }
 
   70% {

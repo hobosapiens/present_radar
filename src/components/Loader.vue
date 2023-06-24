@@ -1,9 +1,21 @@
 <template>
   <div class="loader">
     <img class="loader__img" src="@/assets/images/gif/owl-zoom.gif">
-    <span class="loader__text">Загрузка...</span>
+    <span class="loader__text">{{ text }}</span>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Loader',
+  props: {
+    text: {
+      type: String,
+      default: 'Загрузка...'
+    }
+  }
+};
+</script>
 
 <style scoped lang="scss">
 .loader {
@@ -27,6 +39,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     font-size: 64px;
+    line-height: 64px;
   }
 }
 
