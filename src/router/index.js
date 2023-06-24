@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import MainPage from '@/pages/MainPage.vue';
+import LevelPage from '@/pages/LevelPage.vue';
 import StagePage from '@/pages/StagePage.vue';
 import VideoPage from '@/pages/VideoPage.vue';
 
@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'main',
-    component: MainPage
+    component: LevelPage
   },
   {
     path: '/stage/:id',

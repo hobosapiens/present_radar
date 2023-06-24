@@ -26,23 +26,42 @@ export default new Vuex.Store({
             lng: 18.038692,
         },
         currentStage: 'disclaimer',
-        questions: {
-            1: {
-                video_name: 'ksusha',
-                video_number: '42342423',
-                answer: ['23', 'двадцать три'],
+        levels: [
+            {
+                id: 1,
+                from: {
+                    lat: 0,
+                    lng: 0,
+                },
+                to: {
+                    lat: 0,
+                    lng: 0,
+                },
+                describe_text: 'Какой-то текст',
+                clue_text: 'Какой-то текст посказки',
+                success_text: 'Какой-то текст успеваемности',
+                answers: [
+                    ['пенопласт', 'пенапласт']
+                ],
             },
-            2: {
-                video_name: 'ksusha',
-                video_number: '42342423',
-                answer: ['23', 'двадцать три'],
+            {
+                id: 2,
+                from: {
+                    lat: 0,
+                    lng: 0,
+                },
+                to: {
+                    lat: 0,
+                    lng: 0,
+                },
+                describe_text: 'Какой-то текст',
+                clue_text: 'Какой-то текст посказки',
+                success_text: 'Какой-то текст успеваемности',
+                answers: [
+                    ['диарея', 'деарея']
+                ],
             },
-            3: {
-                video_name: 'ksusha',
-                video_number: '42342423',
-                answer: ['23', 'двадцать три'],
-            },
-        },
+        ],
         log: []
     },
 
@@ -58,6 +77,9 @@ export default new Vuex.Store({
         },
         getCurrentStage(state) {
             return state.currentStage;
+        },
+        getLevels(state) {
+            return state.levels;
         },
         getLog(state) {
             return state.log;
