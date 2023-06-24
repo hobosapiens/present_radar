@@ -1,6 +1,6 @@
 <template>
   <div class="compass__container">
-    <span>{{ this.getGEO?.distance }}</span>
+    <span>{{ this.distance }}</span>
     <div class="compass__north">
       <span>N</span>
     </div>
@@ -22,10 +22,17 @@ export default {
   name: 'Compass',
   components: {
   },
+  props: {
+    distance: {
+      type: Number,
+      required: true,
+      default: 999,
+    }
+  },
   computed: {
     ...mapGetters(['getGEO']),
     showPulsation() {
-      return this.getGEO?.distance < 30;
+      return this.distance < 30;
     }
   }
 }

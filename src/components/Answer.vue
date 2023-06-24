@@ -1,17 +1,19 @@
 <template>
-  <div class="borsh">
-    <img class="borsh__img" src="@/assets/images/borshevskiy.png">
-    <img class="borsh__mouth" src="@/assets/images/gif/mouth.gif">
-    <span class="borsh__text">
-      {{ text }}
-      <slot></slot>
-    </span>
+  <div class="answer__container">
+    <div class="answer">
+      <img class="answer__img" src="@/assets/images/borshevskiy.png">
+      <img class="answer__mouth" src="@/assets/images/gif/mouth.gif">
+      <div class="answer__text">
+        {{ text }}
+        <slot></slot>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Borsh',
+  name: 'Answer',
   props: {
     text: {
       type: String,
@@ -22,11 +24,29 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.borsh {
+.answer {
   display: flex;
   justify-content: flex-start;
+  width: 100%;
   position: relative;
   margin-top: auto;
+  padding-bottom: 60px;
+
+  &::after {
+    content: '';
+    display: block;
+    background: white;
+    position: absolute;
+    top: 245px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__container {
+    display: flex;
+    height: 100vh;
+  }
 
   &__img {
     position: absolute;
@@ -48,11 +68,13 @@ export default {
 
   &__text {
     position: relative;
+    left: 1px;
+    top: 20px;
     width: 60%;
     min-height: 245px;
     background: white;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border: 1px solid #81C4D1;
+    border-radius: 15px;
     padding: 20px;
     z-index: 3;
     color: black;
@@ -67,9 +89,6 @@ export default {
       width: 0;
       position: absolute;
       pointer-events: none;
-    }
-
-    &::after {
       border-color: rgba(136, 183, 213, 0);
       border-left-color: #FFFFFF;
       border-width: 25px;
