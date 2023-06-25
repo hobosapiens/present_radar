@@ -1,8 +1,13 @@
 <template>
   <div class="level-page">
     <Disclaimer @click="nextStage(1)" v-if="this.currentLevel === 0" />
-    <Compass :distance="GEO.distance" v-else-if="GEO.distance > 10" />
-    <Answer :text="log" :answers="levelData.answers" v-else />
+    <Compass :distance="distance" v-else-if="distance > 10" />
+    <Answer 
+      v-else
+      :describe-text="levelData.describe_text"
+      :success-text="levelData.success_text" 
+      :answers="levelData.answers" 
+      />
   </div>
 </template>
 
@@ -26,8 +31,8 @@ export default {
     levelData() {
       return this.levels?.find(level => level.id === this.currentLevel);
     },
-    isAnswerCorrect() {
-      return this.answer.toLocaleLowerCase()
+    distance() {
+      return Number(this.GEO?.distance);
     }
   },
   methods: {

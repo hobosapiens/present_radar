@@ -5,7 +5,8 @@
       <img class="answer__img" src="@/assets/images/borshevskiy.png">
       <img class="answer__mouth" src="@/assets/images/gif/mouth.gif">
       <div class="answer__text">
-        <span>{{ text }}</span>
+        <span v-if="isAnswersValid">{{ successText }}</span>
+        <span v-else>{{ describeText }}</span>
         <input
           v-for="(_, index) in answers" 
           v-model="inputValues[index]"
@@ -14,7 +15,9 @@
           type="text"
           :disabled="isAnswersValid"
         />
-        <button v-if="isAnswersValid" @click="validateInputs" class="answer__button">Вперед!</button>
+        <button v-if="isAnswersValid" @click="handleClick" class="answer__button">
+          Вперед!
+        </button>
       </div>
     </div>
   </div>
@@ -22,6 +25,7 @@
 
 <script>
 import TextInput from '@/components/TextInput.vue';
+
 
 export default {
   name: 'Answer',
@@ -33,16 +37,23 @@ export default {
       type: Array,
       required: true
     },
-    text: {
+    describeText: {
       type: String,
-      default: 'Загрузка...'
-    }
+      default: ''
+    },
+    successText: {
+      type: String,
+      default: ''
+    },
   },
   data: () => ({
     inputValues: [''],
     isAnswersValid: false
   }),
   methods: {
+    handleClick() {
+      console.log('click');
+    },
     validateInputs() {
       let allValid = [];
       for (let i = 0; i < this.answers.length; i++) {
@@ -119,6 +130,9 @@ export default {
   }
 
   &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: relative;
     left: 1px;
     top: 20px;
@@ -174,9 +188,11 @@ export default {
 
   &__button {
     width: 100%;
-    padding: 20px 10px;
-    border-radius: 15px;
+    padding: 14px 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
     background: #FFA12B;
+    box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
     font-family: 'Amatic SC', cursive;
     font-size: 24px;
     color: white;

@@ -26,7 +26,6 @@ export default {
     distance: {
       type: Number,
       required: true,
-      default: 999,
     }
   },
   computed: {

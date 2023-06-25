@@ -14,28 +14,26 @@
           <span>Ксюша, тебя ждут захватывающие приключения!</span><br />
           Опасности будут подстерегать тебя на каждом шагу!
         </p>
-        <ul class="disclaimer__list">
-          <span>Прежде чем отправиться в путь:</span>
-          <li>- подкрепись</li>
-          <li>- сходи в туалет</li>
-          <li>- заряди свой мобильник!</li>
-        </ul>
         <p class="disclaimer__text">
-          И помни! Тебе никто не поможет!<br />
-          Но в крайнем случае обратись в службу поддержки!
+          Прежде чем отправиться в путь:<br />
+          подкрепись, сходи в туалет и заряди свой телефон!
         </p>
-        <p class="disclaimer__text">Запомни... Север - это север, <br />а свовы - то чем кажутся! Ауф!<br />
-          Жми на кнопку, когда будешь готова!
+        <p class="disclaimer__text">
+          И помни, тебе никто не поможет!<br />
+          Но в крайнем случае обратись по <a href="https://t.me/anatolypow" class="hotline">ГОРЯЧЕЙ ЛИНИИ</a>!
+        </p>
+        <p class="disclaimer__text">Запомни... Север - это север, <br />а совы - то чем кажутся! Ауф!<br />
+          Черный ящик с собой не бери!<br /> Жми на кнопку, когда будешь готова!
         </p>
       </div>
     </template>  
-    <Button @click="handleClick">{{ buttonText }}</Button>
+    <BigButton @click="handleClick">{{ buttonText }}</BigButton>
   </div>
 </template>
 
 <script>
 import Banner from '@/components/Banner.vue';
-import Button from '@/components/Button.vue';
+import BigButton from '@/components/BigButton.vue';
 import { mapState, mapActions } from 'vuex';
 import { setLocalStorage } from '@/utils/storage';
 
@@ -43,7 +41,7 @@ export default {
   name: 'Compass',
   components: {
     Banner,
-    Button
+    BigButton
   },
   computed: {
     ...mapState(['first_start']),
@@ -92,5 +90,10 @@ export default {
   &__img {
     max-width: 100%;
   }
+}
+
+.hotline {
+  text-shadow: 2px 2px 0 #B70FFF;
+  color: black;
 }
 </style>

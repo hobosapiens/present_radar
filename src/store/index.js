@@ -18,11 +18,11 @@ export default new Vuex.Store({
             distance: null,
         },
         destination: {
-            lat: 59.261324, 
-            lng: 18.038692,
+            // lat: 59.261324, 
+            // lng: 18.038692,
             // дальше 10м
-            // lat: 59.261252, 
-            // lng: 18.038330,
+            lat: 59.261252, 
+            lng: 18.038330,
         },
         currentLevel: 0,
         levels: [
@@ -32,8 +32,8 @@ export default new Vuex.Store({
                     lat: 0,
                     lng: 0,
                 },
-                describe_text: 'Какой-то текст',
                 clue_text: 'Какой-то текст посказки',
+                describe_text: 'Какой-то текст',
                 success_text: 'Какой-то текст успеваемности',
                 answers: [
                     ['пенопласт', 'пенапласт']
@@ -41,6 +41,21 @@ export default new Vuex.Store({
             },
             {
                 id: 2,
+                loaction: {
+                    lat: 0,
+                    lng: 0,
+                },
+                clue_text: 'Какой-то текст посказки',
+                describe_text: 'Какой-то текст',
+                success_text: 'Какой-то текст успеваемности',
+                answers: [
+                    ['диарея', 'деарея'],
+                    ['пенопласт', 'пенапласт'],
+                    ['дерьмопласт']
+                ],
+            },
+            {
+                id: 3,
                 loaction: {
                     lat: 0,
                     lng: 0,
