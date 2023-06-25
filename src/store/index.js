@@ -35,7 +35,6 @@ export default new Vuex.Store({
                 describe_text: 'Какой-то текст',
                 clue_text: 'Какой-то текст посказки',
                 success_text: 'Какой-то текст успеваемности',
-                isBlitz: false,
                 answers: [
                     ['пенопласт', 'пенапласт']
                 ],
@@ -49,7 +48,6 @@ export default new Vuex.Store({
                 describe_text: 'Какой-то текст',
                 clue_text: 'Какой-то текст посказки',
                 success_text: 'Какой-то текст успеваемности',
-                isBlitz: true,
                 answers: [
                     ['диарея', 'деарея'],
                     ['пенопласт', 'пенапласт'],

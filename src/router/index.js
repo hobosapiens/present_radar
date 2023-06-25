@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import LevelPage from '@/pages/LevelPage.vue';
-import StagePage from '@/pages/StagePage.vue';
+import BlitzPage from '@/pages/BlitzPage.vue';
 import VideoPage from '@/pages/VideoPage.vue';
 
 Vue.use(Router);
@@ -13,9 +13,9 @@ const routes = [
     component: LevelPage
   },
   {
-    path: '/stage/:id',
-    name: 'stage',
-    component: StagePage
+    path: '/blitz/',
+    name: 'blitz',
+    component: BlitzPage
   },
   {
     path: '/video/:id',

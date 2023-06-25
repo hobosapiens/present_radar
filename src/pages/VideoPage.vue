@@ -1,6 +1,6 @@
 <template>
   <div v-if="videoPath">
-    <video controls class="video">
+    <video controls class="video" :poster="posterPath">
       <source :src="videoPath" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       videoPath: require(`@/assets/video/${this.$route.params.id}.mp4`), 
+      posterPath: require(`@/assets/images/preview/${this.$route.params.id}.png`), 
     }
   }
 }

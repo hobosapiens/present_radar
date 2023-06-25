@@ -28,9 +28,6 @@ export default {
     },
     isAnswerCorrect() {
       return this.answer.toLocaleLowerCase()
-    },
-    isBlitz() {
-      return this.levelData.isBlitz
     }
   },
   methods: {
