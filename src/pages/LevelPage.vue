@@ -30,6 +30,7 @@ import Answer from '@/components/Answer.vue';
 import Final from '@/components/Final.vue';
 import Loader from '@/components/Loader.vue';
 import { setCookie } from '@/utils/cookies';
+import { setLocalStorage } from '@/utils/storage';
 
 export default {
   name: 'LevelPage',
@@ -60,10 +61,11 @@ export default {
     ...mapActions(['SET_CURRENT_LEVEL', 'SET_IS_FINALE']),
     nextLevel() {
       if(this.isLastAnswer) {
+        setLocalStorage('is_finale', true);
         this.SET_IS_FINALE(true);
         return;
       }
-
+      setLocalStorage('current_level', this.current_level + 1);
       this.SET_CURRENT_LEVEL(this.current_level + 1)
     }
   },

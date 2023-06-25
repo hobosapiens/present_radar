@@ -25,7 +25,9 @@ export default new Vuex.Store({
             // lat: 59.261252, 
             // lng: 18.038330,
         },
-        current_level: 0,
+        current_level: getLocalStorage('current_level') ?? 0,
+        is_finale: getLocalStorage('is_finale') ?? false,
+        log: [],
         levels: [
             {
                 id: 1,
@@ -199,9 +201,7 @@ export default new Vuex.Store({
                     ['пенопласт', 'пенапласт', 'пеннопласт', 'пеннапласт']
                 ]
             }
-        ],
-        is_finale: false,
-        log: []
+        ]
     },
 
     mutations: {

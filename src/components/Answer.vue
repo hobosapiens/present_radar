@@ -58,7 +58,7 @@ export default {
     validateInputs() {
       let allValid = [];
       for (let i = 0; i < this.answers.length; i++) {
-        if (this.answers[i].includes(this.inputValues[i]?.toLocaleLowerCase())) {
+        if (this.answers[i].includes(this.inputValues[i]?.toLowerCase())) {
           allValid.push(true);
         } else {
           return false;
