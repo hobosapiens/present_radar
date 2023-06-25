@@ -195,7 +195,7 @@ export default {
     background: #FFA12B;
     box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
     font-family: 'Amatic SC', cursive;
-    font-size: 24px;
+    font-size: 28px;
     color: white;
   }
 }

@@ -17,6 +17,7 @@ export default new Vuex.Store({
             bearing: null,
             distance: null,
         },
+        // TODO: выпилить
         destination: {
             lat: 59.261324, 
             lng: 18.038692,
@@ -31,64 +32,176 @@ export default new Vuex.Store({
                 location: {
                     lat: 59.2592889, 
                     lng: 18.0410260,
+                    // рядом
+                    // TODO: выпилить
+                    // lat: 59.261324, 
+                    // lng: 18.038692,
                 },
                 clue_text: 'Какой-то текст посказки',
                 describe_text: 'Какой-то текст',
                 success_text: 'Какой-то текст успеваемности',
                 answers: [
-                    ['пенопласт', 'пенапласт']
-                ],
+                    ['пенопласт', 'пенапласт', 'пеннопласт', 'пеннопласт']
+                ]
             },
             {
                 id: 2,
                 location: {
-                    lat: 0,
-                    lng: 0,
+                    lat: 59.2574674, 
+                    lng: 18.0397999,
+                    // рядом
+                    // TODO: выпилить
+                    // lat: 59.261324, 
+                    // lng: 18.038692,
                 },
                 clue_text: 'Какой-то текст посказки',
                 describe_text: 'Какой-то текст',
                 success_text: 'Какой-то текст успеваемности',
                 answers: [
-                    ['диарея', 'деарея'],
-                    ['пенопласт', 'пенапласт'],
-                    ['дерьмопласт']
-                ],
+                    ['диарея', 'деарея', 'деаррея', 'диаррея']
+                ]
             },
             {
                 id: 3,
                 location: {
-                    lat: 0,
-                    lng: 0,
+                    lat: 59.2502633,
+                    lng: 18.0415034,
+                    // рядом
+                    // TODO: выпилить
+                    // lat: 59.261324, 
+                    // lng: 18.038692,                    
                 },
                 describe_text: 'Какой-то текст',
                 clue_text: 'Какой-то текст посказки',
                 success_text: 'Какой-то текст успеваемности',
                 answers: [
-                    ['диарея', 'деарея'],
-                    ['пенопласт', 'пенапласт'],
-                    ['дерьмопласт']
-                ],
+                    ['какашка', 'какаха', 'говняшка', 'говяшка']
+                ]
             },
+            {
+                id: 4,
+                location: {
+                    lat: 59.2534180,
+                    lng: 18.0402870,
+                    // рядом
+                    // TODO: выпилить
+                    // lat: 59.261324, 
+                    // lng: 18.038692,                    
+                },
+                describe_text: 'Какой-то текст',
+                clue_text: 'Какой-то текст посказки',
+                success_text: 'Какой-то текст успеваемности',
+                answers: [
+                    ['яйцо', 'яицо', 'яичко']
+                ]
+            },
+            {
+                id: 5,
+                location: {
+                    lat: 59.2539619, 
+                    lng: 18.0474532,
+                    // рядом
+                    // TODO: выпилить
+                    // lat: 59.261324, 
+                    // lng: 18.038692,                    
+                },
+                describe_text: 'Какой-то текст',
+                clue_text: 'Какой-то текст посказки',
+                success_text: 'Какой-то текст успеваемности',
+                answers: [
+                    ['гравити фоллз', 'гравитифоллз', 'гравитифоллс', 'гравити фолз', 'гравити фолс', 'gravity falls'],
+                    ['чипсеки', 'чипсики', 'чипсеке', 'чипсы'],
+                    ['lamp', 'ламп', 'лампа']
+                ]
+            },
+            {
+                id: 6,
+                location: {
+                    lat: 59.2561419, 
+                    lng: 18.0466791,
+                    // рядом
+                    // TODO: выпилить
+                    // lat: 59.261324, 
+                    // lng: 18.038692,                    
+                },
+                describe_text: 'Какой-то текст',
+                clue_text: 'Какой-то текст посказки',
+                success_text: 'Какой-то текст успеваемности',
+                answers: [
+                    ['23', 'двацать три', 'двацатьтри']
+                ]
+            },
+            {
+                id: 7,
+                location: {
+                    lat: 59.2550083, 
+                    lng: 18.0499286,
+                    // рядом
+                    // TODO: выпилить
+                    // lat: 59.261324, 
+                    // lng: 18.038692,                    
+                },
+                describe_text: 'Какой-то текст',
+                clue_text: 'Какой-то текст посказки',
+                success_text: 'Какой-то текст успеваемности',
+                answers: [
+                    ['барак обама', 'обама барак']
+                ]
+            },
+            {
+                id: 8,
+                location: {
+                    lat: 59.2524418,  
+                    lng: 18.0608267,
+                    // рядом
+                    // TODO: выпилить
+                    // lat: 59.261324, 
+                    // lng: 18.038692,                    
+                },
+                describe_text: 'Какой-то текст',
+                clue_text: 'Какой-то текст посказки',
+                success_text: 'Какой-то текст успеваемности',
+                answers: [
+                    ['пук', 'пуук', 'puk']
+                ]
+            },
+            {
+                id: 9,
+                location: {
+                    lat: 59.2553547,  
+                    lng: 18.0650901,
+                    // рядом
+                    // TODO: выпилить
+                    // lat: 59.261324, 
+                    // lng: 18.038692,                    
+                },
+                describe_text: 'Какой-то текст',
+                clue_text: 'Какой-то текст посказки',
+                success_text: 'Какой-то текст успеваемности',
+                answers: [
+                    ['водка', 'водяра', 'водочка']
+                ]
+            },
+            {
+                id: 10,
+                location: {
+                    lat: 59.2579893, 
+                    lng: 18.0431654,
+                    // рядом
+                    // TODO: выпилить
+                    // lat: 59.261324, 
+                    // lng: 18.038692,                    
+                },
+                describe_text: 'Какой-то текст',
+                clue_text: 'Какой-то текст посказки',
+                success_text: 'Какой-то текст успеваемности',
+                answers: [
+                    ['пенопласт', 'пенапласт', 'пеннопласт', 'пеннапласт']
+                ]
+            }
         ],
+        is_finale: false,
         log: []
-    },
-
-    getters: {
-        getGEO(state) {
-            return state.GEO;
-        },
-        getDestination(state) {
-            return state.destination;
-        },
-        getCurrentLevel(state) {
-            return state.current_level;
-        },
-        getLevels(state) {
-            return state.levels;
-        },
-        getLog(state) {
-            return state.log;
-        },
     },
 
     mutations: {
@@ -98,6 +211,7 @@ export default new Vuex.Store({
         SET_GEO(state, GEO) {
             state.GEO = GEO;
         },
+        // TODO: выпилить
         SET_DESTINATION(state, destination) {
             state.destination = destination;
         },
@@ -107,6 +221,9 @@ export default new Vuex.Store({
         SET_LOG(state, log) {
             state.log.push(log);
         },
+        SET_IS_FINALE(state, is_finale) {
+            state.is_finale = is_finale;
+        }
     },
 
     actions: {
@@ -116,6 +233,7 @@ export default new Vuex.Store({
         SET_GEO({ commit }, GEO) {
             commit('SET_GEO', GEO);
         },
+        // TODO: выпилить
         SET_DESTINATION({ commit }, destination) {
             commit('SET_DESTINATION', destination);
         },
@@ -124,6 +242,9 @@ export default new Vuex.Store({
         },
         SET_LOG({ commit }, log) {
             commit('SET_LOG', log);
+        },
+        SET_IS_FINALE({ commit }, is_finale) {
+            commit('SET_IS_FINALE', is_finale);
         }
     }
 });

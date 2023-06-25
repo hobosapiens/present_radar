@@ -2,7 +2,6 @@
   <div class="disclaimer">
     <template v-if="first_start">
       <div class="first-start">
-
         <img class="first-start__img" src="@/assets/images/gif/first-start.gif">
         <p class="first-start__text">Разреши отслеживание геолокации! Это важно!</p>
       </div>
@@ -67,6 +66,10 @@ export default {
 .first-start {
   flex-grow: 1;
   margin-bottom: auto;
+
+  &__img {
+    border: 2px solid white !important;
+  }
 
   &__text {
     margin-top: 20px;

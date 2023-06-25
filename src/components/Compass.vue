@@ -1,6 +1,6 @@
 <template>
   <div class="compass__container">
-    <!-- УДАЛИТЬ -->
+    <!-- TODO: выпилить -->
     <span>{{ this.distance }}</span>
     <div class="compass__north">
       <span>N</span>
