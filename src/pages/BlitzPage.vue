@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { getCookie } from '@/utils/cookies';
+
 export default {
   name: 'BlitzPage',
   data: () => ({
@@ -23,6 +25,14 @@ export default {
     video2: '5-2knkg',
     video3: '5-3obgc',
   }),
+  created() {
+    if(getCookie('entry_allowed')) {
+      return;
+    } else {
+      const url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
+      location.replace(url)
+    }
+  }
 }
 </script>
 
