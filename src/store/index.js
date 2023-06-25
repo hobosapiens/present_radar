@@ -18,11 +18,11 @@ export default new Vuex.Store({
             distance: null,
         },
         destination: {
-            // lat: 59.261324, 
-            // lng: 18.038692,
+            lat: 59.261324, 
+            lng: 18.038692,
             // дальше 10м
-            lat: 59.261252, 
-            lng: 18.038330,
+            // lat: 59.261252, 
+            // lng: 18.038330,
         },
         currentLevel: 0,
         levels: [

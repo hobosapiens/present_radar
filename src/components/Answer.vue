@@ -15,7 +15,7 @@
           type="text"
           :disabled="isAnswersValid"
         />
-        <button v-if="isAnswersValid" @click="handleClick" class="answer__button">
+        <button v-if="isAnswersValid" @click="$emit('click')" class="answer__button">
           Вперед!
         </button>
       </div>
@@ -45,15 +45,16 @@ export default {
       type: String,
       default: ''
     },
+    isLastAnswer: {
+      type: Boolean,
+      required: true
+    },
   },
   data: () => ({
     inputValues: [''],
     isAnswersValid: false
   }),
   methods: {
-    handleClick() {
-      console.log('click');
-    },
     validateInputs() {
       let allValid = [];
       for (let i = 0; i < this.answers.length; i++) {

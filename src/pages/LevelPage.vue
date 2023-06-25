@@ -1,13 +1,15 @@
 <template>
   <div class="level-page">
-    <Disclaimer @click="nextStage(1)" v-if="this.currentLevel === 0" />
-    <Compass :distance="distance" v-else-if="distance > 10" />
+    <Disclaimer v-if="this.currentLevel === 0" @click="nextLevel" />
+    <Compass v-else-if="distance > 15" :distance="distance" />
     <Answer 
       v-else
       :describe-text="levelData.describe_text"
       :success-text="levelData.success_text" 
-      :answers="levelData.answers" 
-      />
+      :answers="levelData.answers"
+      :is-last-answer="isLastAnswer"
+      @click="nextLevel"
+    />
   </div>
 </template>
 
@@ -33,12 +35,17 @@ export default {
     },
     distance() {
       return Number(this.GEO?.distance);
+    },
+    isLastAnswer() {
+      return this.levels.length === this.currentLevel
     }
   },
   methods: {
     ...mapActions(['SET_CURRENT_LEVEL']),
-    nextStage(stage) {
-      this.SET_CURRENT_LEVEL(stage)
+    nextLevel() {
+      if(this.isLastAnswer) return
+
+      this.SET_CURRENT_LEVEL(this.currentLevel + 1)
     }
   }
 }

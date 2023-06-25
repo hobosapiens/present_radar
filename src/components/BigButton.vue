@@ -1,5 +1,5 @@
 <template>
-  <div :class="['button', buttonClass]" @click="handleClick">
+  <div :class="['button', buttonClass]" @click="$emit('click')">
     <a href="#">
       <slot></slot>
     </a>
@@ -13,11 +13,6 @@ export default {
     buttonClass: {
       type: String,
       default: ''
-    }
-  },
-  methods: {
-    handleClick() {
-      this.$emit('click');
     }
   }
 };
