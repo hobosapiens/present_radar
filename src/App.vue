@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapState } from "vuex";
 import calculateBearing from '@/utils/calculateBearing.js'
 import distanceInMeters from '@/utils/distanceInMeters.js'
 
@@ -46,7 +46,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getDestination'])
+    ...mapState(['current_level', 'levels']),
+    destination() {
+      if(this.current_level === 0) return this.levels[0].location;
+
+      return this.levels[this.current_level - 1].location;
+    }
   },
   methods: {
     ...mapActions(['SET_GEO', 'SET_LOG']),
@@ -57,15 +62,15 @@ export default {
         this.distance = distanceInMeters(
           this.location.lat,
           this.location.lng,
-          this.getDestination.lat,
-          this.getDestination.lng
+          this.destination.lat,
+          this.destination.lng
         )
 
         this.bearing = calculateBearing(
           this.location.lat,
           this.location.lng,
-          this.getDestination.lat,
-          this.getDestination.lng
+          this.destination.lat,
+          this.destination.lng
         )
 
         this.SET_GEO({

@@ -7,7 +7,7 @@
     </div>
     <div :class="{'pulse': showPulsation}" class="compass">
       <div class="compass-inner">
-        <div :style="`transform: rotate(${this.getGEO?.bearing}deg)`" class="main-arrow">
+        <div :style="`transform: rotate(${bearing}deg)`" class="main-arrow">
           <div class="arrow-up"></div>
           <div class="arrow-down"></div>
         </div>
@@ -17,20 +17,19 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: 'Compass',
-  components: {
-  },
   props: {
     distance: {
       type: Number,
       required: true,
+    },
+    bearing: {
+      type: String,
+      required: true,
     }
   },
   computed: {
-    ...mapGetters(['getGEO']),
     showPulsation() {
       return this.distance < 30;
     }

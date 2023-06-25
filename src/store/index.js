@@ -24,13 +24,13 @@ export default new Vuex.Store({
             // lat: 59.261252, 
             // lng: 18.038330,
         },
-        currentLevel: 0,
+        current_level: 0,
         levels: [
             {
                 id: 1,
-                loaction: {
-                    lat: 0,
-                    lng: 0,
+                location: {
+                    lat: 59.2592889, 
+                    lng: 18.0410260,
                 },
                 clue_text: 'Какой-то текст посказки',
                 describe_text: 'Какой-то текст',
@@ -41,7 +41,7 @@ export default new Vuex.Store({
             },
             {
                 id: 2,
-                loaction: {
+                location: {
                     lat: 0,
                     lng: 0,
                 },
@@ -56,7 +56,7 @@ export default new Vuex.Store({
             },
             {
                 id: 3,
-                loaction: {
+                location: {
                     lat: 0,
                     lng: 0,
                 },
@@ -81,7 +81,7 @@ export default new Vuex.Store({
             return state.destination;
         },
         getCurrentLevel(state) {
-            return state.currentLevel;
+            return state.current_level;
         },
         getLevels(state) {
             return state.levels;
@@ -102,7 +102,7 @@ export default new Vuex.Store({
             state.destination = destination;
         },
         SET_CURRENT_LEVEL(state, level) {
-            state.currentLevel = level;
+            state.current_level = level;
         },
         SET_LOG(state, log) {
             state.log.push(log);
