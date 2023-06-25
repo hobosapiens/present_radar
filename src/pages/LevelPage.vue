@@ -29,6 +29,7 @@ import Compass from '@/components/Compass.vue';
 import Answer from '@/components/Answer.vue';
 import Final from '@/components/Final.vue';
 import Loader from '@/components/Loader.vue';
+import { setCookie } from '@/utils/cookies';
 
 export default {
   name: 'LevelPage',
@@ -65,6 +66,9 @@ export default {
 
       this.SET_CURRENT_LEVEL(this.current_level + 1)
     }
+  },
+  created() {
+    setCookie('entry_allowed', true, 30)
   }
 }
 </script>

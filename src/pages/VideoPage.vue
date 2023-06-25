@@ -10,6 +10,7 @@
 
 <script>
 import Error from '@/components/Error.vue';
+import { getCookie } from '@/utils/cookies';
 
 export default {
   name: 'VideoPage',
@@ -20,6 +21,14 @@ export default {
     return {
       videoPath: require(`@/assets/video/${this.$route.params.id}.mp4`), 
       posterPath: require(`@/assets/images/preview/${this.$route.params.id}.png`), 
+    }
+  },
+  created() {
+    if(getCookie('entry_allowed')) {
+      return;
+    } else {
+      const url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
+      location.replace(url)
     }
   }
 }
