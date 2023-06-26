@@ -20,10 +20,7 @@ export default new Vuex.Store({
         // TODO: выпилить
         destination: {
             lat: 59.261324, 
-            lng: 18.038692,
-            // дальше 10м
-            // lat: 59.261252, 
-            // lng: 18.038330,
+            lng: 18.038692
         },
         current_level: getLocalStorage('current_level') ?? 0,
         is_finale: getLocalStorage('is_finale') ?? false,
@@ -33,11 +30,7 @@ export default new Vuex.Store({
                 id: 1,
                 location: {
                     lat: 59.2592889, 
-                    lng: 18.0410260,
-                    // рядом
-                    // TODO: выпилить
-                    // lat: 59.261324, 
-                    // lng: 18.038692,
+                    lng: 18.0410260
                 },
                 clue_text: 'Какой-то текст посказки 1',
                 describe_text: 'Какой-то текст 1',
@@ -50,11 +43,7 @@ export default new Vuex.Store({
                 id: 2,
                 location: {
                     lat: 59.2574674, 
-                    lng: 18.0397999,
-                    // рядом
-                    // TODO: выпилить
-                    // lat: 59.261324, 
-                    // lng: 18.038692,
+                    lng: 18.0397999
                 },
                 clue_text: 'Какой-то текст посказки 2',
                 describe_text: 'Какой-то текст 2',
@@ -67,11 +56,7 @@ export default new Vuex.Store({
                 id: 3,
                 location: {
                     lat: 59.2502633,
-                    lng: 18.0415034,
-                    // рядом
-                    // TODO: выпилить
-                    // lat: 59.261324, 
-                    // lng: 18.038692,                    
+                    lng: 18.0415034
                 },
                 describe_text: 'Какой-то текст 3',
                 clue_text: 'Какой-то текст посказки 3',
@@ -84,11 +69,7 @@ export default new Vuex.Store({
                 id: 4,
                 location: {
                     lat: 59.2534180,
-                    lng: 18.0402870,
-                    // рядом
-                    // TODO: выпилить
-                    // lat: 59.261324, 
-                    // lng: 18.038692,                    
+                    lng: 18.0402870
                 },
                 describe_text: 'Какой-то текст 4',
                 clue_text: 'Какой-то текст посказки 4',
@@ -101,11 +82,7 @@ export default new Vuex.Store({
                 id: 5,
                 location: {
                     lat: 59.2539619, 
-                    lng: 18.0474532,
-                    // рядом
-                    // TODO: выпилить
-                    // lat: 59.261324, 
-                    // lng: 18.038692,                    
+                    lng: 18.0474532
                 },
                 describe_text: 'Какой-то текст 5',
                 clue_text: 'Какой-то текст посказки 5',
@@ -120,11 +97,7 @@ export default new Vuex.Store({
                 id: 6,
                 location: {
                     lat: 59.2561419, 
-                    lng: 18.0466791,
-                    // рядом
-                    // TODO: выпилить
-                    // lat: 59.261324, 
-                    // lng: 18.038692,                    
+                    lng: 18.0466791
                 },
                 describe_text: 'Какой-то текст 6',
                 clue_text: 'Какой-то текст посказки 6',
@@ -137,11 +110,7 @@ export default new Vuex.Store({
                 id: 7,
                 location: {
                     lat: 59.2550083, 
-                    lng: 18.0499286,
-                    // рядом
-                    // TODO: выпилить
-                    // lat: 59.261324, 
-                    // lng: 18.038692,                    
+                    lng: 18.0499286
                 },
                 describe_text: 'Какой-то текст 7',
                 clue_text: 'Какой-то текст посказки 7',
@@ -154,11 +123,7 @@ export default new Vuex.Store({
                 id: 8,
                 location: {
                     lat: 59.2524418,  
-                    lng: 18.0608267,
-                    // рядом
-                    // TODO: выпилить
-                    // lat: 59.261324, 
-                    // lng: 18.038692,                    
+                    lng: 18.0608267
                 },
                 describe_text: 'Какой-то текст 8',
                 clue_text: 'Какой-то текст посказки 8',
@@ -171,11 +136,7 @@ export default new Vuex.Store({
                 id: 9,
                 location: {
                     lat: 59.2553547,  
-                    lng: 18.0650901,
-                    // рядом
-                    // TODO: выпилить
-                    // lat: 59.261324, 
-                    // lng: 18.038692,                    
+                    lng: 18.0650901
                 },
                 describe_text: 'Какой-то текст 9',
                 clue_text: 'Какой-то текст посказки 9',
@@ -188,11 +149,7 @@ export default new Vuex.Store({
                 id: 10,
                 location: {
                     lat: 59.2579893, 
-                    lng: 18.0431654,
-                    // рядом
-                    // TODO: выпилить
-                    // lat: 59.261324, 
-                    // lng: 18.038692,                    
+                    lng: 18.0431654
                 },
                 describe_text: 'Какой-то текст 10',
                 clue_text: 'Какой-то текст посказки 10',
