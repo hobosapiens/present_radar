@@ -45,7 +45,7 @@ export default {
   computed: {
     ...mapState(['first_start']),
     buttonText() {
-      return this.first_start ? 'ВПЕРЕД' : 'ВПЕРЕД!!!'
+      return this.first_start ? 'ОК' : 'ВПЕРЕД!!!'
     }
   },
   methods: {

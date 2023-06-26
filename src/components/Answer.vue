@@ -15,7 +15,7 @@
           type="text"
           :disabled="isAnswersValid"
         />
-        <button v-if="isAnswersValid" @click="$emit('click')" class="answer__button">
+        <button v-if="isAnswersValid" @click="handleClick" class="answer__button">
           Вперед!
         </button>
       </div>
@@ -55,6 +55,10 @@ export default {
     isAnswersValid: false
   }),
   methods: {
+    handleClick() {
+      this.$emit('click');
+      this.inputValues = [''];
+    },
     validateInputs() {
       let allValid = [];
       for (let i = 0; i < this.answers.length; i++) {
@@ -72,6 +76,8 @@ export default {
       handler() {
         if (this.validateInputs()) {
           this.isAnswersValid = true
+        } else {
+          this.isAnswersValid = false;
         }
       },
     },
@@ -102,6 +108,7 @@ export default {
   &__container {
     display: flex;
     height: 100%;
+    overflow: hidden;
   }
 
   &__fireworks {
@@ -110,6 +117,7 @@ export default {
     left: 0;
     right: 0;
     width: 100%;
+    max-height: 100vh;
   }
 
   &__img {
