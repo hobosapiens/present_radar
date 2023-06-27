@@ -19,7 +19,7 @@
         </p>
         <p class="disclaimer__text">
           И помни, тебе никто не поможет!<br />
-          Но в крайнем случае обратись по <a href="https://t.me/anatolypow" class="hotline">ГОРЯЧЕЙ ЛИНИИ</a>!
+          Но в крайнем случае обратись по <a href="https://t.me/anatolypow" class="hotline" target="_blank">ГОРЯЧЕЙ ЛИНИИ</a>!
         </p>
         <p class="disclaimer__text">Запомни... Север - это север, <br />а совы - то чем кажутся! Ауф!<br />
           Черный ящик с собой не бери!<br /> Жми на кнопку, когда будешь готова!
@@ -96,7 +96,8 @@ export default {
 }
 
 .hotline {
-  text-shadow: 2px 2px 0 #B70FFF;
+  text-shadow: 2px 2px 0 #cd78f2;
   color: black;
+  text-decoration: underline;
 }
 </style>

@@ -25,7 +25,7 @@
 
 <script>
 import TextInput from '@/components/TextInput.vue';
-
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Answer',
@@ -55,9 +55,11 @@ export default {
     isAnswersValid: false
   }),
   methods: {
+    ...mapActions(['SET_IS_EARLY_RESPONSE']),
     handleClick() {
       this.$emit('click');
       this.inputValues = [''];
+      this.SET_IS_EARLY_RESPONSE(false);
     },
     validateInputs() {
       let allValid = [];
@@ -75,7 +77,7 @@ export default {
     inputValues: {
       handler() {
         if (this.validateInputs()) {
-          this.isAnswersValid = true
+          this.isAnswersValid = true;
         } else {
           this.isAnswersValid = false;
         }

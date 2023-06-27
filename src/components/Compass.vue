@@ -1,15 +1,15 @@
 <template>
-  <div class="compass__container">
-    <!-- TODO: выпилить -->
-    <span>{{ this.distance }}</span>
-    <div class="compass__north">
-      <span>N</span>
-    </div>
-    <div :class="{'pulse': showPulsation}" class="compass">
-      <div class="compass-inner">
-        <div :style="`transform: rotate(${bearing}deg)`" class="main-arrow">
-          <div class="arrow-up"></div>
-          <div class="arrow-down"></div>
+  <div :class="{ 'rotated': is_map_shown }" class="compass__wrapper">
+    <div :class="{ 'rotated': is_map_shown }" class="compass__container">
+      <div class="compass__north">
+        <span>N</span>
+      </div>
+      <div :class="{ 'pulse': showPulsation }" class="compass">
+        <div class="compass-inner">
+          <div :style="`transform: rotate(${bearing}deg)`" class="main-arrow">
+            <div class="arrow-up"></div>
+            <div class="arrow-down"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'Compass',
   props: {
@@ -30,6 +32,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['is_map_shown']),
     showPulsation() {
       return this.distance < 30;
     }
@@ -37,7 +40,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .compass {
   width: 400px;
   height: 400px;
@@ -46,35 +49,53 @@ export default {
   background-image: -webkit-linear-gradient(top, #F7F7F7, #ECECEC);
   position: relative;
   margin: 0 auto;
-}
 
-.compass::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  border-radius: 50%;
-  box-shadow: 0 0 3px 1px #000000;
-}
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 3px 1px #000000;
+  }
 
-.compass__container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 30px;
-}
+  &__wrapper {
+    &.rotated {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 
-.compass__north {
-  margin-bottom: 20px;
-}
 
-.compass__north span {
-  font-size: 64px;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 30px;
+
+    &.rotated {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__north {
+    margin-bottom: 20px;
+
+    span {
+      font-size: 64px;
+    }
+  }
 }
 
 .compass-inner {

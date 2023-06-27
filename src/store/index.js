@@ -24,13 +24,15 @@ export default new Vuex.Store({
         },
         current_level: getLocalStorage('current_level') ?? 0,
         is_finale: getLocalStorage('is_finale') ?? false,
+        is_map_shown: false,
+        is_early_response: false,
         log: [],
         levels: [
             {
                 id: 1,
                 location: {
-                    lat: 59.2592889, 
-                    lng: 18.0410260
+                    lat: 59.2596354,
+                    lng: 18.0411742
                 },
                 clue_text: 'Какой-то текст посказки 1',
                 describe_text: 'Какой-то текст 1',
@@ -42,8 +44,8 @@ export default new Vuex.Store({
             {
                 id: 2,
                 location: {
-                    lat: 59.2574674, 
-                    lng: 18.0397999
+                    lat: 59.2569192, 
+                    lng: 18.0409060
                 },
                 clue_text: 'Какой-то текст посказки 2',
                 describe_text: 'Какой-то текст 2',
@@ -148,8 +150,8 @@ export default new Vuex.Store({
             {
                 id: 10,
                 location: {
-                    lat: 59.2579893, 
-                    lng: 18.0431654
+                    lat: 59.2591946,  
+                    lng: 18.0421240
                 },
                 describe_text: 'Какой-то текст 10',
                 clue_text: 'Какой-то текст посказки 10',
@@ -167,6 +169,12 @@ export default new Vuex.Store({
         },
         SET_GEO(state, GEO) {
             state.GEO = GEO;
+        },
+        SET_IS_MAP_SHOWN(state, is_map_shown) {
+            state.is_map_shown = is_map_shown;
+        },
+        SET_IS_EARLY_RESPONSE(state, is_early_response) {
+            state.is_early_response = is_early_response;
         },
         // TODO: выпилить
         SET_DESTINATION(state, destination) {
@@ -189,6 +197,12 @@ export default new Vuex.Store({
         },
         SET_GEO({ commit }, GEO) {
             commit('SET_GEO', GEO);
+        },
+        SET_IS_MAP_SHOWN({ commit }, is_map_shown) {
+            commit('SET_IS_MAP_SHOWN', is_map_shown);
+        },
+        SET_IS_EARLY_RESPONSE({ commit }, is_early_response) {
+            commit('SET_IS_EARLY_RESPONSE', is_early_response);
         },
         // TODO: выпилить
         SET_DESTINATION({ commit }, destination) {
