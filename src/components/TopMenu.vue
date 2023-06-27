@@ -118,6 +118,7 @@ export default {
     border: 2px solid white;
     padding: 3px 10px;
     color: white;
+    z-index: 10;
   }
 
   .pin {
