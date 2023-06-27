@@ -85,6 +85,7 @@ export default {
   justify-content: space-between;
   height: 100%;
   padding: 20px;
+  overflow: scroll;
 
   &__text {
     &__wrapper {
