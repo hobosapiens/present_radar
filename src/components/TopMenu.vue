@@ -9,7 +9,7 @@
     <div class="hotline">
       <a href="https://t.me/anatolypow" class="hotline__link" target="_blank">ГОРЯЧАЯ ЛИНИЯ</a>
     </div>
-    <div v-if="is_map_shown" class="map">
+    <div v-if="is_map_shown" @click.self="SET_IS_MAP_SHOWN(false)" class="map">
       <div class="map__img">
         <div :class="`pin_${currentLevel}`" class="pin"></div>
       </div>
@@ -93,7 +93,7 @@ export default {
   right: 0;
   bottom: 0;
   top: 0;
-  z-index: 10;
+  z-index: 3;
   opacity: .9;
   background: rgba(0,0,0, .9);
 
@@ -106,6 +106,7 @@ export default {
     height: 570px;
     background-image: url(@/assets/images/map.png);
     background-size: contain;
+    z-index: 5;
   }
 
   &__close {

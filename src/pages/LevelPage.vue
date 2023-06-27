@@ -53,7 +53,7 @@ export default {
   computed: {
     ...mapState(['GEO', 'current_level', 'levels', 'is_early_response', 'is_finale', 'log']),
     levelData() {
-      if(this.current_level === 0) return null;
+      if(this.current_level === 0) return {};
       
       return this.levels[this.current_level - 1];
     },
@@ -64,16 +64,16 @@ export default {
       return this.levels.length === this.current_level
     },
     isGotAllData() {
-      return !!this.levelData && !!this.GEO && !!this.distance
+      return !!this.GEO && !!this.distance
     },
     isCompasShown() {
-      return !!this.levelData && this.distance > 25 && !this.is_early_response;
+      return this.distance > 25 && !this.is_early_response;
     },
     isAnswerShown() {
-      return !!this.levelData && (this.distance <= 25 || this.is_early_response);
+      return this.distance <= 25 || this.is_early_response;
     },
     isBackButtonShown() {
-      return !!this.levelData && !this.distance <= 25 && this.is_early_response;
+      return !this.distance <= 25 && this.is_early_response;
     }
   },
   methods: {
