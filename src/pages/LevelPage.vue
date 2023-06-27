@@ -3,7 +3,7 @@
     <template v-if="!is_finale">
       <Disclaimer v-if="this.current_level === 0" @click="nextLevel" />
       <template v-if="isCompasShown">
-        <TopMenu />
+        <TopMenu :current-level="current_level" />
         <Compass :distance="distance" :bearing="GEO.bearing" />
         <div class="clue">
           <span class="clue__text">{{ levelData.clue_text }}</span>
