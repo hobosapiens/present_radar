@@ -10,7 +10,7 @@
         </div>
       </template>
       <Answer 
-        v-else-if="distance || is_early_response"
+        v-else-if="isAnswerShown"
         :describe-text="levelData.describe_text"
         :success-text="levelData.success_text" 
         :answers="levelData.answers"
@@ -67,13 +67,13 @@ export default {
       return !!this.GEO && !!this.distance
     },
     isCompasShown() {
-      return this.distance > 25 && !this.is_early_response;
+      return this.distance > 25 && !this.is_early_response && this.current_level > 0;
     },
     isAnswerShown() {
-      return this.distance <= 25 || this.is_early_response;
+      return (this.distance <= 25 || this.is_early_response) && this.current_level > 0;
     },
     isBackButtonShown() {
-      return !this.distance <= 25 && this.is_early_response;
+      return !this.distance <= 25 && this.is_early_response && this.current_level > 0;
     }
   },
   methods: {
